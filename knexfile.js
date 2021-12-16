@@ -9,13 +9,13 @@ module.exports = {
   development: {
     ...common,
     connection: {
-      filename: './data/users.db3',
+      filename: './data/heroes.db3',
     },
   },
   testing: {
     ...common,
     connection: {
-      filename: './data/test.db3',
+      filename: './data/heroes.test.db3',
     },
   },
 }
