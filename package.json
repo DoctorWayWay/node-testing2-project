@@ -23,6 +23,7 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.4.1",
     "jest": "^27.4.5",
