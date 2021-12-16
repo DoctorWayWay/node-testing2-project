@@ -7,8 +7,8 @@ exports.up = async function (knex) {
       table.string("hero_name")
         .notNullable()
         .unique()
-      table.string("abilities")
-        .notNullable()
+      table.string("description")
+        .unique()
     })
 };
 
