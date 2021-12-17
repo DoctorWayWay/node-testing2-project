@@ -38,4 +38,51 @@ describe("Hero model", () => {
       expect(result.hero_id).toBe(1)
     })
   })
+  describe("addHero", () => {
+    let result
+    beforeEach(async () => {
+      result = await Hero.addHero({ hero_name: "Iron Foot", })
+    })
+    it("adds a new hero to the database", async () => {
+      const allHeroes = await db("heroes")
+      expect(allHeroes).toHaveLength(4)
+    })
+    it("returns the newly added hero", async () => {
+      expect(result).toMatchObject({
+        hero_id: 4,
+        hero_name: "Iron Foot"
+      })
+    })
+  })
+  describe("changeHero", () => {
+    let result
+    const id = 2
+    beforeEach(async () => {
+      result = await Hero.changeHero(id, {
+        name: "",
+        hero_name: "Boom Fist",
+        description: "Blows his enemies up with his punches"
+      })
+    })
+    it("changes the selected by id hero", () => {
+      expect(result).toMatchObject({
+        hero_id: id,
+        name: "",
+        hero_name: "Boom Fist",
+        description: "Blows his enemies up with his punches"
+      })
+    })
+    it("changes the selected by id hero", () => {
+      expect(result).toMatchObject({
+        hero_id: id,
+        name: "",
+        hero_name: "Boom Fist",
+        description: "Blows his enemies up with his punches"
+      })
+    })
+    it("cannot update heroes who aren't in the database", async () => {
+      expect(
+        await Hero.changeHero(7, { hero_name: "Caped Baldy" })).toMatchObject({ message: "hero does not exist" })
+    })
+  })
 })
