@@ -5,6 +5,14 @@ async function getAllHeroes() {
   return allHeroes
 }
 
+async function getById(id) {
+  const hero = await db("heroes")
+    .where({ hero_id: id })
+    .first()
+  return hero
+}
+
 module.exports = {
-  getAllHeroes
+  getAllHeroes,
+  getById,
 }
